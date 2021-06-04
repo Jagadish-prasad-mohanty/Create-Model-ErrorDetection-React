@@ -1,0 +1,6 @@
+.ListElement{
+    text-align: center;
+    padding:4px;
+    border: 1px solid #ccc;
+    background-color: white;
+}

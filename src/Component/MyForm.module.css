@@ -1,0 +1,27 @@
+.MyForm{
+    padding: 10px;
+    text-align: left;
+    background-color: white;
+}
+
+.MyFormControl input{
+    display: block;
+    width: 95%;
+    border: 1px solid #ccc;
+    outline: none;
+    padding: 5px;
+}
+.MyFormControl label{
+    display: block;
+    font-weight: bold;
+    margin: 2px;
+}
+.MyForm button{
+    font-weight: bold;
+    background-color: purple;
+    color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 7px;
+    padding: 7px;
+}
