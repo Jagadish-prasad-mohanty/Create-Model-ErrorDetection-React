@@ -22,7 +22,7 @@ function MyForm(props) {
             return prevState.concat({mname:name,mage:age})
         })
         console.log("[MyForm.js]...",list);
-        props.getList(list)
+        props.getList(list);
         changeName("");
         changeAge("");
     }

@@ -8,8 +8,10 @@ function App() {
   const [list,changeList]=useState([])
 
   const getListHandler=(li)=>{
-    changeList(li);
-    console.log(li);
+    changeList(prevState=>{
+      return prevState.concat(li)
+    })
+    console.log(li); 
   }
   return (
     <div className={classes.App}>
