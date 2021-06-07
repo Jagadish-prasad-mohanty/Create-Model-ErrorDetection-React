@@ -4,9 +4,12 @@ import Button from '../UI/Button';
 import classes from './ErrorModel.module.css';
 
 function ErrorModel(props) {
+    const closeModel=()=>{
+        props.modelClose();
+    }
     return (
-        <div onClick={props.onClick}>
-        <div className={classes.backdrop}/>
+        <div >
+        <div onClick={closeModel} className={classes.backdrop}/>
         <Card className={classes.Model}>
                 <header className={classes.header}>
                     <h2>{props.title}</h2>
@@ -15,7 +18,7 @@ function ErrorModel(props) {
                     <p>{props.message}</p>
                 </div>
                 <footer className={classes.footer}>
-                    <Button>Okey</Button>
+                    <Button onClick={closeModel}>Okey</Button>
                 </footer>
             </Card>
         </div>

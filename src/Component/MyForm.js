@@ -7,7 +7,8 @@ import classes from './MyForm.module.css';
 function MyForm(props) {
     const [name,changeName]=useState("");
     const [age,changeAge]=useState("");
-    const [modelToggle,changeModelClose]=useState(false);
+    const [modelToggle,changeModelToggle]=useState(false);
+    const [error,setError]=useState({});
 
     const onChangeHandler=(e,field)=>{
         e.preventDefault();
@@ -18,25 +19,42 @@ function MyForm(props) {
             changeAge(e.target.value)
         }
     }
-    let error=null;
     const onSubmitHandler= (e)=>{
         e.preventDefault();
-        if (name.trim()===0||age.trim()===0){
-            error=<ErrorModel title="Input Error" message="Name or age should not be blank!!"/>
-            return;
+        if (name.trim().length===0 || age.trim().length===0){
+            setError({
+                title:"Invalid Input",
+                message:"Name and Age should't be blank"
+            })
+            changeModelToggle(prevState=>{
+                return !prevState
+            })
+            return
+        }
+        if (+age<1){
+            setError({
+                title:"Invalid Age",
+                message:"Age can't be <1"
+            })
+            changeModelToggle(prevState=>{
+                return !prevState
+            })
+            return
         }
         props.getList({mname:name,mage:age});
         changeName("");
         changeAge("");
     }
 
-    const errorModelToggle=()=>{
-
+    const closeModelHandler=()=>{
+        changeModelToggle(prevState=>{
+            return !prevState
+        })
     }
 
     return (
         <>
-        {<ErrorModel onClick={errorModelToggle} title="Input Error" message="Name or age should not be blank!!"/>}
+        {modelToggle?<ErrorModel modelClose={closeModelHandler} title={error.title} message={error.message}/>:null}
         <Card>
 
             <form onSubmit={onSubmitHandler} className={classes.MyForm}>
