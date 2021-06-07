@@ -3,7 +3,11 @@ import classes from './List.module.css';
 import ListElement from './ListElement';
 
 function List(props) {
-    const totalList=props.list.map(elem=><ListElement key={Math.random()} name={elem.mname} age={elem.mage}/>)
+    const getIdHandler=id=>{
+        props.getId(id)
+    }
+    
+    const totalList=props.list.length?props.list.map(elem=><ListElement getId={getIdHandler} key={elem.id}  id={elem.id} name={elem.mname} age={elem.mage}/>):null;
     return (
         <div className={classes.List}>
             {totalList}
